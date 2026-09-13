@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+bcrypt
+pydantic
+email-validator
+pandas
+numpy
+scikit-learn
+joblib
+python-multipart
