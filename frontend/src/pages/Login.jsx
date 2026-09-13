@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -49,7 +48,7 @@ function Login() {
       setLoading(true);
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/login",
+        "https://ai-finance-assistant-btxp.onrender.com/login",
         {
           email: formData.email,
           password: formData.password,
@@ -85,10 +84,8 @@ function Login() {
   return (
     <div className="auth-page">
 
-      {/* Background */}
       <div className="auth-background"></div>
 
-      {/* Logo */}
       <Link to="/" className="auth-brand">
         <div className="brand-mark">
           <Brain size={20} />
@@ -97,7 +94,6 @@ function Login() {
         <span>AI Finance</span>
       </Link>
 
-      {/* Login Card */}
       <div className="auth-container">
 
         <div className="auth-card">
@@ -118,7 +114,6 @@ function Login() {
             </p>
           </div>
 
-          {/* Error */}
           {error && (
             <div className="auth-error">
               <AlertCircle size={16} />
@@ -131,7 +126,6 @@ function Login() {
             onSubmit={handleSubmit}
           >
 
-            {/* Email */}
             <div className="auth-field">
               <label htmlFor="email">
                 Email address
@@ -152,7 +146,6 @@ function Login() {
               </div>
             </div>
 
-            {/* Password */}
             <div className="auth-field">
               <label htmlFor="password">
                 Password
@@ -173,7 +166,6 @@ function Login() {
               </div>
             </div>
 
-            {/* Login */}
             <button
               type="submit"
               className="auth-submit"
@@ -191,9 +183,9 @@ function Login() {
                 </>
               )}
             </button>
+
           </form>
 
-          {/* Security */}
           <div className="auth-security">
             <ShieldCheck size={15} />
 
@@ -202,7 +194,6 @@ function Login() {
             </span>
           </div>
 
-          {/* Register */}
           <div className="auth-switch">
             <span>Don't have an account?</span>
 
