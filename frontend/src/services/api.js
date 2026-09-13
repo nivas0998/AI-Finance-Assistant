@@ -1,6 +1,11 @@
 import axios from "axios";
 
-const API = "https://ai-finance-assistant-btxp.onrender.com";
+const API = axios.create({
+  baseURL: "https://ai-finance-assistant-btxp.onrender.com",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 export const registerUser = async (userData) => {
   const response = await API.post("/register", userData);
