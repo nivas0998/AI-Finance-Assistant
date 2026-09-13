@@ -18,6 +18,10 @@ from backend.chatbot import finance_chat
 app = FastAPI(title="AI Finance Assistant API")
 
 
+# ============================================================
+# CORS CONFIGURATION
+# ============================================================
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -31,10 +35,18 @@ app.add_middleware(
 )
 
 
+# ============================================================
+# DATABASE STARTUP
+# ============================================================
+
 @app.on_event("startup")
 def startup():
     create_database()
 
+
+# ============================================================
+# HOME
+# ============================================================
 
 @app.get("/")
 def home():
@@ -121,7 +133,6 @@ def login(user: UserLogin):
     connection.close()
 
     if not database_user:
-
         raise HTTPException(
             status_code=401,
             detail="Invalid email or password",
@@ -133,7 +144,6 @@ def login(user: UserLogin):
     )
 
     if not password_valid:
-
         raise HTTPException(
             status_code=401,
             detail="Invalid email or password",
@@ -156,7 +166,6 @@ def predict_expense_category(data: dict):
     description = data.get("description")
 
     if not description:
-
         raise HTTPException(
             status_code=400,
             detail="Description is required",
@@ -518,18 +527,21 @@ def chat(data: dict):
     message = data.get("message")
 
     if not user_id:
+
         raise HTTPException(
             status_code=400,
             detail="User ID is required",
         )
 
     if not message or not str(message).strip():
+
         raise HTTPException(
             status_code=400,
             detail="Message is required",
         )
 
     try:
+
         response = finance_chat(
             int(user_id),
             str(message),
@@ -541,6 +553,7 @@ def chat(data: dict):
         }
 
     except Exception as error:
+
         print("Chatbot error:", error)
 
         raise HTTPException(
@@ -1082,4 +1095,3 @@ def dashboard(user_id: int):
             for item in monthly_trends
         ],
     }
-
